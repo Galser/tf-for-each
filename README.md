@@ -1,6 +1,8 @@
 # tf-for-each
 Sample repo, Terraform, [for-each](https://www.terraform.io/docs/configuration/resources.html#for_each-multiple-resource-instances-defined-by-a-map-or-set-of-strings) meta-argument
 
+# Requirements
+This repo assumes general knowledge about Terraform if not, please get yourself accustomed first by going through [getting started guide](https://learn.hashicorp.com/terraform?track=getting-started#getting-started) . 
 
 # **for_each**: Multiple Resource Instances Defined By a Map, or Set of Strings
 
@@ -43,7 +45,7 @@ resource "null_resource" "echo" {
   }
 }
 ```
-It will create three individual instancs of the ``null_resoruce`` and when applied produce following results : 
+After init and apply - it will create three individual instancs of the ``null_resoruce``, produce following results : 
 ```bash
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -129,7 +131,7 @@ For some common examples of such situations, see the [flatten](https://www.terra
 
 Well, now we want to have a little bit more random farm, considering not only of animals, but inhabitants also named by some epithets, in the best style of Salvador Dali.  
 
-- Create following code ( it is provided or your convinence in the [/dynamic_demo](/dynamic_demo) folder ) :
+- Create following code ( it is provided for your convinence in the [/dynamic_demo](/dynamic_demo) folder ) :
 
 ```terraform
 resource "random_pet" "cattles" {
@@ -159,8 +161,9 @@ As we dealing with dynamic resource, this example also going to demo the fact th
 
 - Step 1 : Plan **random** resources 
 
-PLan creation ONLY of the random pet names by executing :  
+Plan creation ONLY of the random pet names by executing :  
 `terraform plan -out make_farm.plan -target random_pet.cattles` :
+
 Output : 
 ```bash
 
@@ -207,6 +210,7 @@ To perform exactly these actions, run the following command to apply:
 - Step 2 : Create random resources with apply of the plan
 
 Execute `terraform apply make_farm.plan`
+
 Output : 
 ```bash
 terraform apply make_farm.plan
@@ -238,6 +242,8 @@ State path: terraform.tfstate
 - Step 3, apply the rest , creating several `random_resources`
 
 Execute : `terraform apply` :
+
+Output :
 ```bash
 random_pet.cattles: Refreshing state... [id=scarcely,closing,macaque]
 
@@ -297,10 +303,10 @@ null_resource.echo["scarcely"]: Creating...
 ```
 
 
-
 # TODO
 
 
 # DONE
 - [x] make demo code
 - [x] create readme
+- [x] update readme
